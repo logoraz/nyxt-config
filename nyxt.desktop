@@ -1,0 +1,15 @@
+# nyxt.desktop --> ~/.local/share/applications/nyxt.desktop
+[Desktop Entry]
+Name=Nyxt
+GenericName=Web Browser
+Comment=Be Productive
+StartupWMClass=Electron
+StartupNotify=true
+Exec=/home/logoraz/.local/share/common-lisp/custom/nyxt/nyxt
+Icon=/home/logoraz/.local/share/common-lisp/custom/nyxt/assets/glyphs/nyxt.svg
+Type=Application
+Terminal=false
+X-MultipleArgs=false
+Categories=Electron;Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
+Keywords=Internet;WWW;Browser;Web;Explorer

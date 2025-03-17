@@ -1,0 +1,12 @@
+# Main
+/ocicl/*
+
+# Extensions
+## nx-nord-theme
+/extensions/nx-nord-theme/ocicl/*
+
+## nx-list
+/extensions/nx-lis/ocicl/*
+
+## nx-code
+/extensions/nx-code/ocicl/*
