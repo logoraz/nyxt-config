@@ -8,5 +8,6 @@
   :depends-on ("nyxt"
                "local-time"
                "cl-ppcre"
+               ;; "cl-treesitter"
                "cl-transducers")
   :components ((:file "nx-code")))

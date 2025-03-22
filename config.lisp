@@ -3,15 +3,6 @@
 ;;; Commentary:
 ;;; Set buffer settings, password interface, Extensions & Hacks
 ;;;
-;;; Nyxt as a FlatPak on Guix
-;;;
-;;; 1. flatpak --user install <path/to/engineer.atlas.Nyxt-Electron
-;;;
-;;; 3. flatpak --user install com.github.tchx84.Flatseal
-;;;
-;;; 2. flatpak info --show-permissions engineer.atlas.Nyxt-Electron
-
-
 (in-package #:nyxt-user)
 
 ;;; Reset ASDF registries to allow loading Lisp systems from
@@ -46,8 +37,8 @@ loads."
      :depends-on (,system) ,@(when file `(:components (,file)))))
 
 (defextsystem #:nx-nord-theme)
-(defextsystem #:nx-code)
 (defextsystem #:nx-micros)
+;; (defextsystem #:nx-code)
 
 
 ;;; Hacks
