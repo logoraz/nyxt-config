@@ -1,4 +1,4 @@
-(in-package #:nyxt/mode/password)
+(in-package :nyxt/mode/password)
 
 ;; in mode/password
 (define-command save-new-password-dev (&optional (buffer (current-buffer)))

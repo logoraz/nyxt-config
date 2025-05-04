@@ -1,9 +1,9 @@
 ;;; Only for nxyt-3 or greater
-(nyxt:define-package #:nx-code
+(nyxt:define-package :nx-code
   #+nil
   (:local-nicknames (#:t #:transducers)
                     (#:re #:cl-ppcre)))
-(in-package #:nx-code)
+(in-package :nx-code)
 
 
 (defvar *locutus* "nx-code"
