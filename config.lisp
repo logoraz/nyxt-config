@@ -15,40 +15,19 @@
 
 
 (define-configuration :browser
-  ((restore-session-on-startup-p nil)
-   #+(or)
-   (default-new-buffer-url (quri:uri "https://github.com/atlas-engineer/nyxt"))
-   #+(or)
-   (external-editor-program (if (member :flatpak *features*)
-                                "flatpak-spawn --host emacsclient -r"
-                                "emacsclient -r"))
-   (search-engine-suggestions-p nil)
-   (search-engines `(%slot-default% ,@*search-engines*))
-   ;; Sets the font for the Nyxt UI (not for webpages).
-   (theme (make-instance 'theme:theme
-                         :font-family "Hack"
-                         :monospace-font-family "Hack"))
-   ;; Whether code sent to the socket gets executed.  You must understand the
-   ;; risks before enabling this: a privileged user with access to your system
-   ;; can then take control of the browser and execute arbitrary code under your
-   ;; user profile.
-   #+(or)
-   (remote-execution-p t)))
-
-(define-configuration :modable-buffer
-  ((prompt-on-mode-toggle-p t)))
+  ((search-engine-suggestions-p nil)
+   (search-engines `(%slot-default% ,@*search-engines*))))
 
 (define-configuration :buffer
     ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%))))
 
 (define-configuration :input-buffer
   ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%))
-   #+(or)
-   (default-modes (pushnew 'nyxt/mode/emacs:emacs-mode %slot-value%))
    (conservative-word-move t)))
 
 (define-configuration :web-buffer
   ((default-modes `(nyxt/mode/reduce-tracking:reduce-tracking-mode
+                    ;; TODO: configure NYXT/MODE/BLOCKER:HOSTLISTS %slot%
                     nyxt/mode/blocker:blocker-mode
                     nyxt/mode/force-https:force-https-mode
                     ,@%slot-value%))))
@@ -59,6 +38,7 @@
 (define-configuration :prompt-buffer
   ((mouse-support-p nil)))
 
+#+(or) ;; Keep for reference
 (define-configuration :search-buffer-mode
   ((keyscheme-map
     (keymaps:define-keyscheme-map "custom" (list :import %slot-value%)
@@ -66,9 +46,7 @@
       (list "C-f" 'nyxt/mode/search-buffer:search-buffer)))))
 
 (define-configuration :hint-mode
-  (#+(or) (nyxt/mode/hint:hints-alphabet "KDJFLSAIEUROWPQCMVXZ")
-   #+(or) (nyxt/mode/hint:hinting-type :vi)
-   (nyxt/mode/hint:show-hint-scope-p nil)
+  ((nyxt/mode/hint:show-hint-scope-p nil)
    (keyscheme-map
     (keymaps:define-keyscheme-map "custom" (list :import %slot-value%)
       nyxt/keyscheme:emacs

@@ -39,10 +39,15 @@
 (defparameter *nord15+* "#dbc9d8")  ;; '+ (lighter)'
 
 
+(defparameter *font-regular* "Iosevka Aile")
+(defparameter *font-monospace* "Fira Code")
 
 ;;; Nord Theme (Based off Invader-2 Theme)
 (defvar *nx-nord-theme*
   (make-instance 'theme:theme
+                 :font-family           *font-regular*
+                 :monospace-font-family *font-monospace*
+                 
                  :background-color-    *nord00-*   ;; Dark Black
                  :background-color     *nord00=*   ;; Black
                  :background-color+    *nord01=*

@@ -15,7 +15,7 @@
 
 
 (define-command-global start-micros (&optional (micros-port *micros-port*))
-    "Start a Micros server enabling connecting to Lem via SLIME."
+    "Start a Micros server."
   (micros:create-server :port micros-port :dont-close t)
   (echo "Micros server started at port ~a" micros-port))
 
