@@ -40,12 +40,12 @@ and installs dependencies there. This is preferred for me as it keeps dependenci
 Once ocicl is installed, you can install your dependencies via their CLI as follows:
 
 ```bash
-
+ $ cd path/to/nx-lis/
  $ ocicl install micros slynk swank
 
 ```
 
-Or you can do it from within a lisp repl (sbcl):
+Or you can do it from within a lisp repl (sbcl) in `path/to/ny-lis/`:
 
 ```lisp
 
