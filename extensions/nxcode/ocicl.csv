@@ -1,0 +1,5 @@
+alexandria, ghcr.io/ocicl/alexandria@sha256:e433c2e076ed3bcf8641b97b00192680db2201d305efac9293539dee88c7fbf7, alexandria-20240503-8514d8e/alexandria.asd
+cl-postgres_plus_local-time, ghcr.io/ocicl/local-time@sha256:7f53539308b9fdfd32cfd6a632ee25f5c3a4187cf5ef858d33846e6b1e33d3df, local-time-20250427-fea5b15/cl-postgres+local-time.asd
+cl-ppcre, ghcr.io/ocicl/cl-ppcre@sha256:584907e0683621973579f397115945ef73e9d5b7afa77fae7cacecb3ad272f89, cl-ppcre-20240503-80fb19d/cl-ppcre.asd
+cl-ppcre-unicode, ghcr.io/ocicl/cl-ppcre@sha256:584907e0683621973579f397115945ef73e9d5b7afa77fae7cacecb3ad272f89, cl-ppcre-20240503-80fb19d/cl-ppcre-unicode.asd
+local-time, ghcr.io/ocicl/local-time@sha256:7f53539308b9fdfd32cfd6a632ee25f5c3a4187cf5ef858d33846e6b1e33d3df, local-time-20250427-fea5b15/local-time.asd

@@ -1,29 +1,20 @@
-;;; Only for nxyt-3 or greater
-(nyxt:define-package :nx-lis)
-(in-package :nx-lis)
+(defpackage :nxconfig/tcp-servers
+  (:use :cl :nyxt)
+  (:import-from :slynk)
+  (:import-from :swank)
+  (:import-from :micros)
+  (:documentation "Lisp Interaction Servers Interface for Nyxt-4+"))
+(in-package :nxconfig/tcp-servers)
 
 
-(defvar *micros-port* 4006
-  "Default Micros server port for Nyxt")
-
-(defvar *slynk-port* 4006
+(defvar *slynk-port* 4005
   "Default Slynk server port for Nyxt")
 
 (defvar *swank-port* 4006
   "Default Swank server port for Nyxt")
 
-
-
-(define-command-global start-micros (&optional (micros-port *micros-port*))
-    "Start a Micros server."
-  (micros:create-server :port micros-port :dont-close t)
-  (echo "Micros server started at port ~a" micros-port))
-
-(define-command-global stop-micros (&optional (micros-port *micros-port*))
-    "Stop current Micros server."
-  (micros:stop-server micros-port)
-  (echo "Closing Micros server at port ~a" micros-port))
-
+(defvar *micros-port* 4007
+  "Default Micros server port for Nyxt")
 
 
 (define-command-global start-slynk (&optional (slynk-port *slynk-port*))
@@ -37,7 +28,6 @@
   (echo "Closing Slynk server at port ~a" slynk-port))
 
 
-
 (define-command-global start-swank (&optional (swank-port *swank-port*))
   "Start a Swank server."
   (swank:create-server :port swank-port :dont-close t)
@@ -48,3 +38,13 @@
   (swank:stop-server swank-port)
   (echo "Closing Swank server at port ~a" swank-port))
 
+
+(define-command-global start-micros (&optional (micros-port *micros-port*))
+  "Start a Micros server."
+  (micros:create-server :port micros-port :dont-close t)
+  (echo "Micros server started at port ~a" micros-port))
+
+(define-command-global stop-micros (&optional (micros-port *micros-port*))
+    "Stop current Micros server."
+  (micros:stop-server micros-port)
+  (echo "Closing Micros server at port ~a" micros-port))

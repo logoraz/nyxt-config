@@ -1,12 +1,14 @@
 # Main
+startup.log
+error.log
 /ocicl/*
 
+# Source Modules
+/source/ocicl/*
+
 # Extensions
-## nx-nord-theme
-/extensions/nx-nord-theme/ocicl/*
+## nx-nord-themes
+/extensions/nx-nord-themes/ocicl/*
 
-## nx-list
-/extensions/nx-lis/ocicl/*
-
-## nx-code
+## nxcode
 /extensions/nx-code/ocicl/*

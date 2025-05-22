@@ -1,5 +1,0 @@
-cl-postgres_plus_local-time, ghcr.io/ocicl/local-time@sha256:82462960e462321d46563ce9f9bd20dbdb138eae612d86aeaf9e8f00ac51e78a, local-time-20250131-0bc6fb8/cl-postgres+local-time.asd
-cl-ppcre, ghcr.io/ocicl/cl-ppcre@sha256:584907e0683621973579f397115945ef73e9d5b7afa77fae7cacecb3ad272f89, cl-ppcre-20240503-80fb19d/cl-ppcre.asd
-cl-ppcre-unicode, ghcr.io/ocicl/cl-ppcre@sha256:584907e0683621973579f397115945ef73e9d5b7afa77fae7cacecb3ad272f89, cl-ppcre-20240503-80fb19d/cl-ppcre-unicode.asd
-local-time, ghcr.io/ocicl/local-time@sha256:82462960e462321d46563ce9f9bd20dbdb138eae612d86aeaf9e8f00ac51e78a, local-time-20250131-0bc6fb8/local-time.asd
-transducers, ghcr.io/ocicl/transducers@sha256:8b0cc02fb8c7caa0d3bb91256defd40abd3875fcce0801745713fd2939db7b9b, cl-transducers-20250321-4e1305b/transducers.asd
