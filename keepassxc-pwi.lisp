@@ -1,4 +1,4 @@
-(in-package :nyxt-user)
+(in-package #:nyxt-user)
 
 ;; https://forums.linuxmint.com/viewtopic.php?t=313358
 

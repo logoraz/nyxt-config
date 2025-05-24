@@ -1,5 +1,5 @@
-(nyxt:define-package :nx-nord-theme)
-(in-package :nx-nord-theme)
+(nyxt:define-package #:nx-nord-theme)
+(in-package #:nx-nord-theme)
 
 ;;; Nord Color Palette
 ;; Tool used to add colors variation https://mdigi.tools/color-shades/#44475a

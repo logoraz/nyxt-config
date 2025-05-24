@@ -1,10 +1,15 @@
-(in-package :nyxt-user)
+(in-package #:nyxt-user)
 
 (defvar *search-engines*
   (list
    (make-instance 'search-engine
                   :name "Google"
-                  :shortcut "goo"
+                  :shortcut "ggl"
+                  :control-url
+                  "https://www.google.com/?q=~a")
+   (make-instance 'search-engine
+                  :name "DDG"
+                  :shortcut "ddg"
                   :control-url
                   "https://duckduckgo.com/?q=~a")
    (make-instance 'search-engine
@@ -13,56 +18,58 @@
                   :control-url
                   "https://developer.mozilla.org/en-US/search?q=~a")))
 
+(defun make-search-engine (name curl ))
 
-(define-configuration :browser
+
+(define-configuration browser
   ((search-engine-suggestions-p nil)
    (search-engines `(%slot-default% ,@*search-engines*))))
 
-(define-configuration :buffer
+(define-configuration buffer
     ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%))))
 
-(define-configuration :input-buffer
+(define-configuration input-buffer
   ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%))
    (conservative-word-move t)))
 
-(define-configuration :web-buffer
+(define-configuration web-buffer
   ((default-modes `(nyxt/mode/reduce-tracking:reduce-tracking-mode
                     ;; TODO: configure NYXT/MODE/BLOCKER:HOSTLISTS %slot%
                     nyxt/mode/blocker:blocker-mode
                     nyxt/mode/force-https:force-https-mode
                     ,@%slot-value%))))
 
-(define-configuration :document-buffer
+(define-configuration document-buffer
   ((keep-search-marks-p nil)))
 
-(define-configuration :prompt-buffer
+(define-configuration prompt-buffer
   ((mouse-support-p nil)))
 
 #+(or) ;; Keep for reference
-(define-configuration :search-buffer-mode
+(define-configuration search-buffer-mode
   ((keyscheme-map
     (keymaps:define-keyscheme-map "custom" (list :import %slot-value%)
       nyxt/keyscheme:emacs
       (list "C-f" 'nyxt/mode/search-buffer:search-buffer)))))
 
-(define-configuration :hint-mode
+(define-configuration hint-mode
   ((nyxt/mode/hint:show-hint-scope-p nil)
    (keyscheme-map
     (keymaps:define-keyscheme-map "custom" (list :import %slot-value%)
       nyxt/keyscheme:emacs
       (list "M-f" 'nyxt/mode/hint:follow-hint)))))
 
-(define-configuration :autofill-mode
+(define-configuration autofill-mode
   ((nyxt/mode/autofill:autofills
     (list (nyxt/mode/autofill:make-autofill :name "Name"
                                             :fill "Erik Almaraz")
           (nyxt/mode/autofill:make-autofill :name "Email"
                                             :fill "erikalmaraz@fastmail.com")))))
 
-(define-configuration :status-buffer ((glyph-mode-presentation-p t)))
-(define-configuration :force-https-mode ((glyph "HTTPS")))
-(define-configuration :blocker-mode ((glyph "block")))
-(define-configuration :reduce-tracking-mode ((glyph "no-track")))
+(define-configuration status-buffer ((glyph-mode-presentation-p t)))
+(define-configuration force-https-mode ((glyph "HTTPS")))
+(define-configuration blocker-mode ((glyph "block")))
+(define-configuration reduce-tracking-mode ((glyph "no-track")))
 
 
 ;;; Nyxt Extensions
@@ -87,13 +94,13 @@ CONFIG, if true, provides only components to top-level user config.
              (t
               `(:depends-on (,system))))))
 
-(defextsystem :nx-nord-theme)
-(defextsystem :keepassxc-pwi
+(defextsystem nx-nord-theme)
+(defextsystem keepassxc-pwi
   :config t
   :files ("keepassxc-pwi"
           "keepassxc-3431"))
-(defextsystem :nx-lis)
-(defextsystem :nx-code)
+(defextsystem nx-lis)
+(defextsystem nx-code)
 
 
 ;;; Hacks
@@ -105,9 +112,32 @@ CONFIG, if true, provides only components to top-level user config.
   #P"/home/logoraz/.config/nyxt/bookmarks.lisp")
 
 ;; Hack to get rid of white echo-area (v4 pre-release 3)
-(define-configuration :browser
+(define-configuration browser
   ((window-make-hook
     (hooks:add-hook %slot-value% 
                     (lambda (_) (echo ""))))))
 
+#+(or)
+(defvar *my-search-engines*
+  (list
+   '("alp" "https://archlinux.org/packages/?q=~a" "https://archlinux.org/packages")
+   '("alw" "https://wiki.archlinux.org/?search=~a" "https://wiki.archlinux.org")
+   '("aur" "https://aur.archlinux.org/packages?K=~a" "https://aur.archlinux.org")
+   '("yt"  "https://youtube.com/results?search_query=~a" "https://youtube.com")
+   '("ytm" "https://music.youtube.com/search?q=~a" "https://music.youtube.com")
+   '("ghb" "https://github.com/search?q=~a" "https://github.com/MaskedRedstonerProZ")
+   '("glb" "https://gitlab.com/search?search=~a" "https://gitlab.com/MaskedRedstonerProZ")
+   '("ddg" "https://duckduckgo.com/?q=~a" "https://duckduckgo.com"))
+  "List of search engines.")
 
+#+(or)
+(define-configuration :browser ;;:context-buffer
+  "Go through the search engines above and `make-search-engine' out of them."
+  ((search-engines
+    (append
+     %slot-default%
+     (mapcar (lambda (engine) (apply 'make-search-engine engine))
+             *my-search-engines*))))
+  )
+
+;; Also, get the compiler warning: `<WARN> [20:55:33] Not found slot SEARCH-ENGINES in class CONTEXT-BUFFER, generating the wrapper method for configuration.` however, seems to run w/o warning when applied to class `browser` rather than `context-buffer` in `define-configuration`
