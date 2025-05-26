@@ -1,29 +1,30 @@
 (in-package #:nyxt-user)
 
-(defvar *search-engines*
-  (list
-   (make-instance 'search-engine
-                  :name "Google"
-                  :shortcut "ggl"
-                  :control-url
-                  "https://www.google.com/?q=~a")
-   (make-instance 'search-engine
-                  :name "DDG"
-                  :shortcut "ddg"
-                  :control-url
-                  "https://duckduckgo.com/?q=~a")
-   (make-instance 'search-engine
-                  :name "MDN"
-                  :shortcut "mdn"
-                  :control-url
-                  "https://developer.mozilla.org/en-US/search?q=~a")))
+(defun make-search-engine (name shortcut control-url)
+  "Construtor function for class search-engine for slots:
+:NAME, :SHORTCUT, and :CONTROL-URL."
+  (make-instance 'search-engine
+                 :name name
+                 :shortcut shortcut
+                 :control-url control-url))
 
-(defun make-search-engine (name curl ))
-
+(defvar *search-engines-list*
+  '(("Google"      "ggl" "https://www.google.com/?q=~A") ; I know - using the King of evils...
+    ("GitHub"      "ghb" "https://github.com/search?q=~A&type=repositories")
+    ("Codeberg"    "cbg" "https://codeberg.org/explore/repos?q=~A&only_show_relevant=true&sort=recentupdate")
+    ("Fedora Pkgs" "fpk" "https://packages.fedoraproject.org/search?query=~A")
+    ("CL NovaSpec" "nvs" "https://novaspec.org/cl/")) ; For now ignore query text and just bring up NovaSpec...
+  "List of search engines defined for make-search-engine constructor.")
 
 (define-configuration browser
-  ((search-engine-suggestions-p nil)
-   (search-engines `(%slot-default% ,@*search-engines*))))
+  "Configure BROWSER class."
+  ((search-engines ; TODO: create keybinding for `query-selection-in-search-engine
+    (append (mapcar (lambda (engine) (apply #'make-search-engine engine))
+                    *search-engines-list*)
+            %slot-default%))
+   (window-make-hook ; Hack to get rid of white echo-area (v4 pre-releases)
+    (hooks:add-hook %slot-value% 
+                    (lambda (_) (echo ""))))))
 
 (define-configuration buffer
     ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%))))
@@ -94,11 +95,10 @@ CONFIG, if true, provides only components to top-level user config.
              (t
               `(:depends-on (,system))))))
 
-(defextsystem nx-nord-theme)
 (defextsystem keepassxc-pwi
   :config t
-  :files ("keepassxc-pwi"
-          "keepassxc-3431"))
+  :files ("keepassxc-pwi"))
+(defextsystem nx-nord-theme)
 (defextsystem nx-lis)
 (defextsystem nx-code)
 
@@ -111,33 +111,3 @@ CONFIG, if true, provides only components to top-level user config.
   "Re-route bookmarks to the `.config/nyxt/' directory."
   #P"/home/logoraz/.config/nyxt/bookmarks.lisp")
 
-;; Hack to get rid of white echo-area (v4 pre-release 3)
-(define-configuration browser
-  ((window-make-hook
-    (hooks:add-hook %slot-value% 
-                    (lambda (_) (echo ""))))))
-
-#+(or)
-(defvar *my-search-engines*
-  (list
-   '("alp" "https://archlinux.org/packages/?q=~a" "https://archlinux.org/packages")
-   '("alw" "https://wiki.archlinux.org/?search=~a" "https://wiki.archlinux.org")
-   '("aur" "https://aur.archlinux.org/packages?K=~a" "https://aur.archlinux.org")
-   '("yt"  "https://youtube.com/results?search_query=~a" "https://youtube.com")
-   '("ytm" "https://music.youtube.com/search?q=~a" "https://music.youtube.com")
-   '("ghb" "https://github.com/search?q=~a" "https://github.com/MaskedRedstonerProZ")
-   '("glb" "https://gitlab.com/search?search=~a" "https://gitlab.com/MaskedRedstonerProZ")
-   '("ddg" "https://duckduckgo.com/?q=~a" "https://duckduckgo.com"))
-  "List of search engines.")
-
-#+(or)
-(define-configuration :browser ;;:context-buffer
-  "Go through the search engines above and `make-search-engine' out of them."
-  ((search-engines
-    (append
-     %slot-default%
-     (mapcar (lambda (engine) (apply 'make-search-engine engine))
-             *my-search-engines*))))
-  )
-
-;; Also, get the compiler warning: `<WARN> [20:55:33] Not found slot SEARCH-ENGINES in class CONTEXT-BUFFER, generating the wrapper method for configuration.` however, seems to run w/o warning when applied to class `browser` rather than `context-buffer` in `define-configuration`
