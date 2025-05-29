@@ -14,6 +14,7 @@
 (:url "https://forum.systemcrafters.net/" :title "System Crafters - System Crafters Forum" :date "2025-01-07T01:54:42.012329Z" :tags ("Craft"))
 (:url "https://frame.work/" :title "Framework | Fix Consumer Electronics" :date "2025-01-11T17:18:53.018223Z" :tags ("Craft"))
 (:url "https://gigamonkeys.com/book/" :title "Practical Common Lisp" :date "2025-02-01T05:51:44.133700Z" :tags ("Common-Lisp"))
+(:url "https://github.com/g000001/lisp-critic" :title "The Lisp Critic" :date "2025-05-27T13:03:37.814736Z" :tags ("Common-Lisp"))
 (:url "https://github.com/richardwesthaver/core/blob/default/ffi/blas/pkg.lisp" :title "ellis blas/lapack work" :date "2025-05-25T17:42:29.587425Z" :tags ("Common-Lisp"))
 (:url "https://google.github.io/styleguide/lispguide.xml" :title "Google Common Lisp Style Guide" :date "2025-02-01T07:24:36.264795Z" :tags ("Common-Lisp"))
 (:url "https://iolib.common-lisp.dev/" :title "IOLib CL" :date "2025-05-25T05:17:11.775111Z" :tags ("Common-Lisp"))

@@ -3,6 +3,14 @@
   :author "Erik P Almaraz"
   :license "MIT"
   :version "0.0.1"
-  :serial t
-  :depends-on (#:cl-treesitter)
-  :components ((:file "nx-code")))
+  :class :package-inferred-system
+  :depends-on (#:nyxt
+               #:alexandria
+               #:cl-treesitter
+               #:nx-code/core/base))
+
+;; Internal
+(register-system-packages "nx-code/core/base" '(#:base))
+
+;; External
+(register-system-packages "cl-treesitter" '(#:treesitter))

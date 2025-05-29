@@ -1,6 +1,20 @@
-;;; Only for nxyt-4 or greater
-(nyxt:define-package #:nx-code)
-(in-package #:nx-code)
+;; see nyxt/source/package.lisp (line 90)
+(defpackage #:nx-code/core/base
+  (:nicknames #:nx-code)
+  (:use #:cl 
+        #:nyxt
+        #:alexandria-2)
+  (:import-from #:treesitter
+                #:include-language
+                #:make-language
+                #:node-string
+                #:tree-root-node
+                #:parser-parse-string
+                #:make-parser
+                #:query)
+  (:export))
+
+(in-package #:nx-code/core/base)
 
 (defvar *locutus* "nx-code"
   "First contact from nx-code")
@@ -14,22 +28,21 @@
     (echo "First Contact: ~a ~a." locutus current-day-as-string)))
 
 
-;; Currently only java is available for Fedora 42
-;; sudo dnf install libtree-sitter-java-devel (or libtree-sitter-java)
+;;; cl-treesitter example for now to test it out
 
 ;; Load a language grammar
+;; Currently only java is available for Fedora 42
+;; sudo dnf install libtree-sitter-java-devel (or libtree-sitter-java)
 (treesitter:include-language "java")
 (defvar *java-lang* (treesitter:make-language "java"))
 
 ;; parse to stringified node
-#+(or)
 (let ((parser (treesitter:make-parser :language *java-lang*)))
   (treesitter:node-string
    (treesitter:tree-root-node
     (treesitter:parser-parse-string parser "1+1;"))))
 
 ;; make a query
-#+(or)
 (line-up-first
  (treesitter:make-parser :language *java-lang*)
  (treesitter:parser-parse-string "int func() { return 0; return 1; }")
