@@ -43,13 +43,15 @@ from `~/.config/nyxt/extensions` to `~/.local/share/nyxt/extensions/`
 
 ### Loading Common Lisp dependencies required for extensions
 I use [ocicl](https://github.com/ocicl/ocicl) for my external Common Lisp systems
-management b/c it provides a lot of conveniency and is far more superior than the other
-distribution tools out there (namely all those dependent on quicklisp...)
+management because it provides a lot of conveniency and is far more superior and 
+more secure than the other distribution tools out there that depend on quicklisp 
+(namely qlot, roswell, ultralisp, etc.). It's time to move away from quicklisp
+folks!
 
 First, install `ocicl` following the install instructions on their readme.
 
-Next, let's install the external dependencies for `nx-lis`, my Lisp Interaction Servers
-extension:
+Next, let's install the external dependencies for `nx-lis`, a trivial Lisp Interaction 
+Servers extension I created for Nyxt:
 
 ```bash
    $ cd ~/.config/nyxt/extensions/nx-lis/
@@ -57,8 +59,8 @@ extension:
    $ ocicl install
 ```
 
-A neat feature of the command line tool I suggested and the folks at `ocicl` quickly
-implemented is `tree`, which lists out installed dependencies, you can trial it out
+A neat feature of the `ocicl` command line tool - I suggested and the folks at `ocicl`
+quickly implemented - is `tree`, which lists out installed dependencies, you can trial it out
 as follows to see what dependencies were installed above:
 
 ```bash
@@ -71,8 +73,7 @@ as follows to see what dependencies were installed above:
 
 If you are feeling daring, you can hack my current experimental extension
 `nx-code`, a modern emacs-like IDE I am developing for nyxt. To do so, you will
-need to install the Fedora packages to compile cl-treesitter as well as 
-`cl-treesitter` itself:
+need to install the Fedora packages to compile `cl-treesitter`:
 
 Fedora dependencies:
 ```bash
@@ -80,7 +81,7 @@ Fedora dependencies:
    $ sudo dnf install libtree-sitter-devel
 ```
 
-Get `cl-treesitter` source and compile:
+Now lets get the `cl-treesitter` source and compile:
 ```bash
    # First retrieve the source of `cl-treesitter'
    $ cd ~/.config/nyxt/extensions/nx-code/
