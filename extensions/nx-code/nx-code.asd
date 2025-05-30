@@ -14,3 +14,4 @@
 
 ;; External
 (register-system-packages "cl-treesitter" '(#:treesitter))
+(register-system-packages "alexandria"    '(#:alexandria #:alexandria-2))

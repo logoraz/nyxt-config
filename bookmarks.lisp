@@ -37,6 +37,7 @@
 (:url "https://www.delta.com/" :title "Delta Air Lines" :date "2025-02-04T01:59:36.591345Z" :tags ("Home"))
 (:url "https://www.lispworks.com/documentation/HyperSpec/Front/index.htm" :title "Common Lisp HyperSpec" :date "2025-05-24T04:10:30.611984Z" :tags ("Common-Lisp"))
 (:url "https://www.reddit.com/user/logoraz/" :title "Reddit" :date "2025-01-29T02:49:02.992486Z" :tags ("Craft"))
+(:url "http://www.sbcl.org/" :title "Steel Bank Common Lisp" :date "2025-05-29T13:13:44.293751Z" :tags ("Common-Lisp"))
 (:url "https://www.sbcl.org/manual/asdf.html" :title "ASDF Manual" :date "2025-02-05T05:00:48.059715Z" :tags ("Common-Lisp"))
 (:url "https://www.wellsfargo.com/" :title "Wells Fargo Bank" :date "2025-05-18T22:33:57.354612Z" :tags ("Home"))
 )
