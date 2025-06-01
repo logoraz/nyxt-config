@@ -6,12 +6,10 @@
   :class :package-inferred-system
   :depends-on (#:nyxt
                #:alexandria
-               #:cl-treesitter
                #:nx-code/core/base))
 
 ;; Internal
 (register-system-packages "nx-code/core/base" '(#:base))
 
 ;; External
-(register-system-packages "cl-treesitter" '(#:treesitter))
-(register-system-packages "alexandria"    '(#:alexandria #:alexandria-2))
+(register-system-packages "alexandria" '(#:alexandria #:alexandria-2))

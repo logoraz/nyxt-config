@@ -1,5 +1,13 @@
 (in-package #:nyxt-user)
 
+(defvar *search-engines-list*
+  '(("Google" "ggl" "https://www.google.com/?q=~A") ; I know - using the King of evils...
+    ("GitHub" "ghb" "https://github.com/search?q=~A&type=repositories")
+    ("Codeberg" "cbg" "https://codeberg.org/explore/repos?q=~A&only_show_relevant=true&sort=recentupdate")
+    ("Fedora Pkgs" "fpk" "https://packages.fedoraproject.org/search?query=~A")
+    ("CL NovaSpec" "nvs" "https://novaspec.org/cl/")) ; For now ignore query text and just bring up NovaSpec...
+  "List of search engines defined for make-search-engine constructor.")
+
 (defun make-search-engine (name shortcut control-url)
   "Construtor function for class search-engine for slots:
 :NAME, :SHORTCUT, and :CONTROL-URL."
@@ -8,26 +16,21 @@
                  :shortcut shortcut
                  :control-url control-url))
 
-(defvar *search-engines-list*
-  '(("Google"      "ggl" "https://www.google.com/?q=~A") ; I know - using the King of evils...
-    ("GitHub"      "ghb" "https://github.com/search?q=~A&type=repositories")
-    ("Codeberg"    "cbg" "https://codeberg.org/explore/repos?q=~A&only_show_relevant=true&sort=recentupdate")
-    ("Fedora Pkgs" "fpk" "https://packages.fedoraproject.org/search?query=~A")
-    ("CL NovaSpec" "nvs" "https://novaspec.org/cl/")) ; For now ignore query text and just bring up NovaSpec...
-  "List of search engines defined for make-search-engine constructor.")
-
 (define-configuration browser
-  "Configure BROWSER class."
   ((search-engines ; TODO: create keybinding for `query-selection-in-search-engine
     (append (mapcar (lambda (engine) (apply #'make-search-engine engine))
                     *search-engines-list*)
-            %slot-default%))
-   (window-make-hook ; Hack to get rid of white echo-area (v4 pre-releases)
+            %slot-default%)
+    :doc "Add personalized search engines, must define *search-engines-list
+and constructor function `make-search-engines'.")
+   (window-make-hook                    ;
     (hooks:add-hook %slot-value% 
-                    (lambda (_) (echo ""))))))
+                    (lambda (_) (echo "")))
+    :doc "Hack to get rid of white echo-area (v4 pre-releases)")))
 
 (define-configuration buffer
-    ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%))))
+    ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%)
+                    :doc "Apply Emacs mode for buffers")))
 
 (define-configuration input-buffer
   ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%))
@@ -35,10 +38,20 @@
 
 (define-configuration web-buffer
   ((default-modes `(nyxt/mode/reduce-tracking:reduce-tracking-mode
-                    ;; TODO: configure NYXT/MODE/BLOCKER:HOSTLISTS %slot%
                     nyxt/mode/blocker:blocker-mode
                     nyxt/mode/force-https:force-https-mode
-                    ,@%slot-value%))))
+                    ,@%slot-value%)
+                  :doc "Enable base modes for web-buffer class.")))
+
+#+ (or) ;; TODO - add blocked host list
+(progn
+  (defvar *blocked-hosts-list* "tbd")
+
+  (define-configuration nyxt/mode/blocker:blocker-mode
+    ((nyxt/mode/blocker:hostlists
+      (append (list *my-blocked-hosts*) %slot-default%)
+      :doc \"You have to define *my-blocked-hosts* first.\")))
+)
 
 (define-configuration document-buffer
   ((keep-search-marks-p nil)))
@@ -109,5 +122,4 @@ CONFIG, if true, provides only components to top-level user config.
 (defmethod files:resolve ((profile nyxt:nyxt-profile)
                           (file nyxt/mode/bookmark:bookmarks-file))
   "Re-route bookmarks to the `.config/nyxt/' directory."
-  #P"/home/logoraz/.config/nyxt/bookmarks.lisp")
-
+  #P"/home/loraz/.config/nyxt/bookmarks.lisp")
