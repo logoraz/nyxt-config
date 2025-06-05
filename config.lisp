@@ -122,4 +122,4 @@ CONFIG, if true, provides only components to top-level user config.
 (defmethod files:resolve ((profile nyxt:nyxt-profile)
                           (file nyxt/mode/bookmark:bookmarks-file))
   "Re-route bookmarks to the `.config/nyxt/' directory."
-  #P"/home/loraz/.config/nyxt/bookmarks.lisp")
+  (uiop:xdg-config-home #P"nyxt/bookmarks.lisp"))

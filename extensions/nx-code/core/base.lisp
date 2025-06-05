@@ -2,8 +2,10 @@
 (defpackage #:nx-code/core/base
   (:nicknames #:nx-code)
   (:use #:cl 
-        #:nyxt
-        #:alexandria-2)
+        #:nyxt)
+  (:import-from #:alexandria-2)
+  (:import-from #:local-time)
+  (:import-from #:cl-ppcre)
   (:export *locutus*))
 
 (in-package #:nx-code/core/base)

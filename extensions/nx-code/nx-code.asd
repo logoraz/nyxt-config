@@ -5,11 +5,6 @@
   :version "0.0.1"
   :class :package-inferred-system
   :depends-on (#:nyxt
-               #:alexandria
                #:nx-code/core/base))
 
-;; Internal
-(register-system-packages "nx-code/core/base" '(#:base))
-
-;; External
 (register-system-packages "alexandria" '(#:alexandria #:alexandria-2))

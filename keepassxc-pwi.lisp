@@ -8,9 +8,9 @@
                                      "keepassxc-cli")
   "KeePassXC executable for password interface")
 
-(defvar *keepassxc-db* "/home/loraz/Documents/moses/keepassxc/p.kdbx")
+(defvar *keepassxc-db* "/home/logoraz/Documents/moses/keepassxc/p.kdbx")
 
-(defvar *keepassxc-kf* "/home/loraz/Documents/moses/keepassxc/pkf")
+(defvar *keepassxc-kf* "/home/logoraz/Documents/moses/keepassxc/pkf")
 
 (defvar *yubikey-slot* "") ; set as `empty string' to avoid propmt
 

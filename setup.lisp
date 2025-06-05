@@ -16,6 +16,7 @@
                     (uiop:xdg-data-home #P"nyxt/extensions/"))
 
   ;; Symlink nyxt.desktop to ~/.local/share/applications/nyxt.desktop
+  #+(or)
   (sb-posix:symlink (uiop:xdg-config-home #P"nyxt/nyxt.desktop")
                     (uiop:xdg-data-home #P"applications/nyxt.desktop"))
   t)
