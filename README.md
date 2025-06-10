@@ -1,6 +1,8 @@
 # nyxt-config - Nyxt Browswer Configuration 
 
 Personal configuration for the highly extensible Nyxt Browser with batteries included. 
+This configuration scaffold is set up as its own modern CL system (package-inferred-system)
+so as to keep things modular.
 
 PS: Only tested and used on Fedora 42 Workstation...
 
@@ -20,6 +22,24 @@ PS: Only tested and used on Fedora 42 Workstation...
   - `nx-code` (Included - *WIP* A modern extensible emacs-like IDE extension for Nyxt)
      - [cl-treesitter](https://github.com/garlic0x1/cl-treesitter)
 
+## Project Scaffold
+```lisp
+  ~/.config/nyxt/
+    config.lisp
+    nyxt-config.asd
+    setup.lisp
+    |- assets/
+    |- extensions/
+       |- nx-nord-theme/
+       |- nx-lis/
+       |- nx-code/
+    |- source/
+       |- all.lisp
+       |- browser.lisp
+       |- keepassxc-pwi.lisp
+       |- extensions.lisp
+       |- hacks.lisp
+```
 
 ## Installation/Setup
 Download this repo from `https://github.com/logoraz/nyxt-config`:
@@ -59,9 +79,10 @@ Servers extension I created for Nyxt:
    $ ocicl install
 ```
 
-A neat feature of the `ocicl` command line tool - I suggested and the folks at `ocicl`
-quickly implemented - is `tree`, which lists out installed dependencies, you can trial it out
-as follows to see what dependencies were installed above:
+A neat feature of the `ocicl` command line tool that I suggested (see 
+[Issue 122](https://github.com/ocicl/ocicl/issues/122)) and the folks at `ocicl`
+quickly implemented in part - is `tree`, which lists out installed dependencies, 
+you can trial it out as follows to see what dependencies were installed above:
 
 ```bash
    $ ocicl tree --depth=4
@@ -72,13 +93,15 @@ as follows to see what dependencies were installed above:
 ```
 
 If you are feeling daring, you can hack my current experimental extension
-`nx-code`, a modern emacs-like IDE I am developing for nyxt. To do so, you will
-need to install the Fedora packages to compile `cl-treesitter`:
+`nx-code`, a modern emacs-like IDE I am developing for nyxt. 
+
+Considering of incorporating `cl-treesitter`, below is the build recipe for
+doing so...Currently not needed as a dependency as there is only treesitter
+bindings available for java in Fedora...
 
 Fedora dependencies:
 ```bash
-   $ sudo dnf group install c-development development-tools
-   $ sudo dnf install libtree-sitter-devel
+   $ sudo dnf install make gcc libtree-sitter-devel
 ```
 
 Now lets get the `cl-treesitter` source and compile:

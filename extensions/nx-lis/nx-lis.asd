@@ -1,10 +1,8 @@
-(defsystem #:nx-lis
+(defsystem "nx-lis"
   :author "Erik P Almaraz"
   :license "MIT"
   :version "0.0.1"
   :description "Connect to Nyxt with Swank/Slynk/Micros servers."
-  :serial t
-  :depends-on (#:micros
-               #:swank
-               #:slynk)
-  :components ((:file "nx-lis")))
+  :class :asdf/package-inferred-system
+  :depends-on ("nyxt"
+               "nx-lis"))

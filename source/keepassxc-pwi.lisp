@@ -1,6 +1,7 @@
-(in-package #:nyxt-user)
-
-;; https://forums.linuxmint.com/viewtopic.php?t=313358
+(defpackage :nyxt-config/source/keepassxc-pwi
+  (:use :cl
+        :nyxt))
+(in-package :nyxt-config/source/keepassxc-pwi)
 
 #+nil
 (defvar *keepassxc-exe* (concatenate 'string
@@ -12,15 +13,15 @@
 
 (defvar *keepassxc-kf* "/home/logoraz/Documents/moses/keepassxc/pkf")
 
+;; TODO: fix this default behavior, should only prompt if no keyfile is provided
+;;       |--> submit PR when resolved...
 (defvar *yubikey-slot* "") ; set as `empty string' to avoid propmt
 
 (defmethod initialize-instance :after ((interface password:keepassxc-interface)
                                        &key &allow-other-keys)
            (setf (password:password-file interface) *keepassxc-db*
                  (password:key-file interface) *keepassxc-kf*
-                 (password:yubikey-slot interface) *yubikey-slot*
-                 ;;(password:executable interface) *keepassxc-exe*
-           ))
+                 (password:yubikey-slot interface) *yubikey-slot*))
 
 (define-configuration nyxt/mode/password:password-mode
   ((password-interface (make-instance 'password:keepassxc-interface))))

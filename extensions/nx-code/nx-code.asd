@@ -1,10 +1,10 @@
-(defsystem #:nx-code
+(defsystem "nx-code"
   :description "Modern Emacs-like Editor/IDE for Nyxt."
   :author "Erik P Almaraz"
   :license "MIT"
   :version "0.0.1"
   :class :package-inferred-system
-  :depends-on (#:nyxt
-               #:nx-code/core/base))
+  :depends-on ("nyxt"
+               "nx-code"))
 
-(register-system-packages "alexandria" '(#:alexandria #:alexandria-2))
+(register-system-packages "alexandria" '(:alexandria :alexandria-2))

@@ -31,6 +31,7 @@
 (defparameter *nord13-* "#e3b65c")  ;; '- (darker)'
 (defparameter *nord13=* "#ebcb8b")  ;; '= (base)'     Yellow (Pale)
 (defparameter *nord13+* "#f2ddb3")  ;; '+ (lighter)'
+;; TODO Update color range based on (darker being the default - deviate from Nord slightly)
 (defparameter *nord14-* "#83a864")  ;; '- (darker)'
 (defparameter *nord14=* "#a3be8c")  ;; '= (base)'     Green (Pastel)
 (defparameter *nord14+* "#d1dfc6")  ;; '+ (lighter)'
@@ -64,13 +65,13 @@
                  :on-secondary-color   *nord06+*   ;; White (Brighter)
 
                  :action-color-        *nord14-*
-                 :action-color         *nord14=*   ;; Green (Pastel)
-                 :action-color+        *nord14+*
+                 :action-color         *nord14-*   ;; Green (Pastel) darker
+                 :action-color+        *nord14-*
                  :on-action-color      *nord00-*
 
                  :success-color-       *nord14-*
-                 :success-color        *nord14=*   ;; Green (Pastel)
-                 :success-color+       *nord14+*
+                 :success-color        *nord14-*   ;; Green (Pastel) darker
+                 :success-color+       *nord14-*
                  :on-success-color     *nord00-*
 
                  :highlight-color-     *nord15-*
