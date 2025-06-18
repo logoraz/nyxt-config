@@ -1,6 +1,5 @@
 (defpackage :nyxt-config/source/keepassxc-pwi
-  (:use :cl
-        :nyxt))
+  (:use :cl :nyxt))
 (in-package :nyxt-config/source/keepassxc-pwi)
 
 #+nil
@@ -17,17 +16,19 @@
 ;;       |--> submit PR when resolved...
 (defvar *yubikey-slot* "") ; set as `empty string' to avoid propmt
 
+
 (defmethod initialize-instance :after ((interface password:keepassxc-interface)
                                        &key &allow-other-keys)
-           (setf (password:password-file interface) *keepassxc-db*
-                 (password:key-file interface) *keepassxc-kf*
-                 (password:yubikey-slot interface) *yubikey-slot*))
+  (setf (password:password-file interface) *keepassxc-db*
+        (password:key-file interface) *keepassxc-kf*
+        (password:yubikey-slot interface) *yubikey-slot*))
 
 (define-configuration nyxt/mode/password:password-mode
   ((password-interface (make-instance 'password:keepassxc-interface))))
 
+
 (define-configuration buffer
-    ((default-modes `(nyxt/mode/password:password-mode ,@%slot-value%))))
+  ((default-modes `(nyxt/mode/password:password-mode ,@%slot-value%))))
 
 ;;; References
 ;;; 1. https://nyxt.atlas.engineer/documentation#keepassxc-support

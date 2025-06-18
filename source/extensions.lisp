@@ -26,4 +26,8 @@ CONFIG, if true, provides only components to top-level user config.
               `(:depends-on (,system))))))
 
 ;; Keep to illustrate example of proper Nyxt extension
+#+nil
 (defextsystem nx-nord-theme)
+#+nil
+(setf *extensions-directory* (make-instance 'extensions-directory
+                                            :base-path #P"~/.config/nyxt/extensions/"))

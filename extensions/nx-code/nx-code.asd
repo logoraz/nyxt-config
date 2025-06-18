@@ -5,6 +5,6 @@
   :version "0.0.1"
   :class :package-inferred-system
   :depends-on ("nyxt"
-               "nx-code"))
+               "nx-code/core"))
 
 (register-system-packages "alexandria" '(:alexandria :alexandria-2))

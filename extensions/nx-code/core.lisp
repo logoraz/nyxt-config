@@ -1,5 +1,5 @@
 ;; see nyxt/source/package.lisp (line 90)
-(defpackage :nyxt-config/extensions/nx-code/nx-code
+(defpackage :nx-code/core
   (:use :cl :nyxt)
   (:import-from :alexandria-2)
   (:import-from :local-time)
@@ -8,7 +8,7 @@
            #:nx-code-first-contact)
   (:documentation "Base package for nx-code"))
 
-(in-package :nyxt-config/extensions/nx-code/nx-code)
+(in-package :nx-code/core)
 
 (defvar *locutus* "nx-code"
   "First contact from nx-code")

@@ -43,7 +43,7 @@ and constructor function `make-search-engines'.")))
                     nyxt/mode/force-https:force-https-mode
                     ,@%slot-value%)
      :doc "Enable base modes for web-buffer class.")))
-
+#+nil
 (define-configuration document-buffer
   ((keep-search-marks-p nil)))
 

@@ -6,11 +6,10 @@
   :class :package-inferred-system
   :depends-on ("nyxt"
                "nyxt-config/source/all"
-               "nyxt-config/extensions/nx-lis/all"
-               "nyxt-config/extensions/nx-code/all")
+               "nx-nord-themes"
+               "nx-lis"
+               "nx-code")
   :long-description "
 Personal configuration for the highly extensible Nyxt Browser with batteries
 included. This configuration scaffold is set up as its own modern CL system 
 (package-inferred-system type) so as to keep things modular.")
-
-(register-system-packages "alexandria" '(:alexandria-2))

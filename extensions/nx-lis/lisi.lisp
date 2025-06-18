@@ -1,11 +1,11 @@
 ;;; Only for nxyt-3 or greater
-(defpackage :nyxt-config/extensions/nx-lis/nx-lis
-  ;; (:nicknames :nx-lis)
+(defpackage :nx-lis/lisi
   (:use :cl :nyxt)
   (:import-from :slynk)
   (:import-from :swank)
-  (:import-from :micros))
-(in-package :nyxt-config/extensions/nx-lis/nx-lis)
+  (:import-from :micros)
+  (:documentation "Lisp Interaction Servers Interface for Nyxt"))
+(in-package :nx-lis/lisi)
 
 
 (defvar *slynk-port* 4005
