@@ -1,9 +1,11 @@
-(uiop:define-package :nyxt-config/source/all
-  (:nicknames :nyxt-config)
-  (:use :cl
-        :nyxt)
+(uiop:define-package :nxconfig/source/all
+  (:nicknames :nxconfig)
+  (:use :cl :nyxt)
   (:use-reexport
-   #:nyxt-config/source/browser
-   #:nyxt-config/source/keepassxc-pwi
-   #:nyxt-config/source/hacks))
-(in-package :nyxt-config/source/all)
+   #:nxconfig/source/browser
+   #:nxconfig/source/keepassxc-pwi
+   #:nxconfig/source/tcp-servers
+   #:nxconfig/source/hacks
+   #+nil
+   #:nxconfig/source/extensions))
+(in-package :nxconfig/source/all)

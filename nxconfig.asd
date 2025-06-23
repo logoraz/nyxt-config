@@ -1,14 +1,14 @@
-(defsystem "nyxt-config"
+(defsystem "nxconfig"
   :author "Erik P Almaraz"
   :license "MIT"
-  :version "0.0.1"
+  :version (:read-file-form "version.sexp" :at (0 1))
   :description "Nyxt Configuration."
   :class :package-inferred-system
   :depends-on ("nyxt"
-               "nyxt-config/source/all"
+               "nxconfig/source/all"
+               ;; Extensions
                "nx-nord-themes"
-               "nx-lis"
-               "nx-code")
+               "nxcode")
   :long-description "
 Personal configuration for the highly extensible Nyxt Browser with batteries
 included. This configuration scaffold is set up as its own modern CL system 

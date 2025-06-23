@@ -1,8 +1,8 @@
-# nyxt-config - Nyxt Browswer Configuration 
+# `:nxconfig` - Nyxt Browser Configuration 
 
-Personal configuration for the highly extensible Nyxt Browser with batteries included. 
-This configuration scaffold is set up as its own modern CL system (package-inferred-system)
-so as to keep things modular.
+Personal configuration for the highly extensible Nyxt Browser with batteries
+included.  This configuration scaffold is set up as its own modern CL system
+(package-inferred-system) so as to keep things modular.
 
 PS: Only tested and used on Fedora 42 Workstation...
 
@@ -14,13 +14,13 @@ PS: Only tested and used on Fedora 42 Workstation...
 ## Dependencies
   - [nyxt](https://github.com/atlas-engineer/nyxt)
   - [ocicl](https://github.com/ocicl/ocicl)
-  - `nx-nord-theme` (Included - A dark Nord theme based on Nyxt's Invader theme)
-  - `nx-lis` (Included - Lisp Interaction Servers Extension)
-     - micros
-     - slynk
-     - swank
-  - `nx-code` (Included - *WIP* A modern extensible emacs-like IDE extension for Nyxt)
-     - [cl-treesitter](https://github.com/garlic0x1/cl-treesitter)
+  - `nx-nord-themes` (Included - A dark Nord theme based on Nyxt's Invader theme)
+  - `nxcode` (Included - *WIP* A Editor/IDE extension for Nyxt)
+     - tbd
+  - TCP Servers configuration
+  - slynk
+  - swank
+  - micros     
 
 ## Project Scaffold
 ```lisp
@@ -30,13 +30,13 @@ PS: Only tested and used on Fedora 42 Workstation...
     setup.lisp
     |- assets/
     |- extensions/
-       |- nx-nord-theme/
-       |- nx-lis/
-       |- nx-code/
+       |- nx-nord-themes/
+       |- nxcode/
     |- source/
        |- all.lisp
        |- browser.lisp
        |- keepassxc-pwi.lisp
+       |- tcp-servers.lisp
        |- extensions.lisp
        |- hacks.lisp
 ```
@@ -57,8 +57,8 @@ configuration:
    $ sbcl --load setup.lisp
 ```
 
-This script ensures `~/.local/share/nyxt/` directory exists, then creates a symlink
-from `~/.config/nyxt/extensions` to `~/.local/share/nyxt/extensions/`
+This script ensures `~/.local/share/nyxt/` directory exists, then creates a
+symlink from `~/.config/nyxt/extensions` to `~/.local/share/nyxt/extensions/`
 
 
 ### Loading Common Lisp dependencies required for extensions
@@ -70,11 +70,10 @@ folks!
 
 First, install `ocicl` following the install instructions on their readme.
 
-Next, let's install the external dependencies for `nx-lis`, a trivial Lisp Interaction 
-Servers extension I created for Nyxt:
+Next, let's install the external dependencies for the TCP servers configuration
 
 ```bash
-   $ cd ~/.config/nyxt/extensions/nx-lis/
+   $ cd ~/.config/nyxt/source/
    # Dependencies are specified in 'ocicl.csv'
    $ ocicl install
 ```
@@ -86,14 +85,14 @@ you can trial it out as follows to see what dependencies were installed above:
 
 ```bash
    $ ocicl tree --depth=4
-   #/home/<username>/.config/nyxt/extensions/nx-lis/ocicl.csv
+   #/home/<username>/.config/nyxt/source/ocicl.csv
    #├─ micros
    #├─ slynk
    #└─ swank
 ```
 
 If you are feeling daring, you can hack my current experimental extension
-`nx-code`, a modern emacs-like IDE I am developing for nyxt. 
+`nxcode`, a modern emacs-like Editor/IDE I am developing for nyxt. 
 
 Considering of incorporating `cl-treesitter`, below is the build recipe for
 doing so...Currently not needed as a dependency as there is only treesitter
@@ -116,17 +115,9 @@ Now lets get the `cl-treesitter` source and compile:
    $ sbcl --eval "(asdf:load-system 'cl-treesitter) (sb-ext:quit)"
 ``
 
-If not, you can easily disable in the config by commenting out or deleting the
-following line of code:
-
-```lisp
-  ;;(defextsystem nx-code)
-```
-
-
 ## TODOs (Wish List)
   - Establish custom keybindings...
-  - Continue efforts on developing `nx-code`, an emacs-like IDE for Nyxt.
+  - Continue efforts on developing `nxcode` Editor/IDE for Nyxt.
   - tbd
 
 

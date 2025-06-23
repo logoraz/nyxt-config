@@ -1,11 +1,11 @@
-(defpackage :nyxt-config/source/hacks
+(defpackage :nxconfig/source/hacks
   (:use :cl
         :nyxt)
   (:import-from :nfiles
                 #:resolve)
   (:import-from :nhooks
                 #:add-hook))
-(in-package :nyxt-config/source/hacks)
+(in-package :nxconfig/source/hacks)
 
 ;; Borrowed from aartaka
 (defmethod resolve ((profile nyxt:nyxt-profile)
@@ -16,5 +16,5 @@
 (define-configuration browser
   ((window-make-hook
     (add-hook %slot-value%
-                   (lambda (_) (echo "")))
+              (lambda (_) (echo "")))
     :dock "Hack to get rid of white echo-area (v4 pre-releases)")))

@@ -1,20 +1,19 @@
-;;; Only for nxyt-3 or greater
-(defpackage :nx-lis/lisi
+(defpackage :nxconfig/source/tcp-servers
   (:use :cl :nyxt)
   (:import-from :slynk)
   (:import-from :swank)
   (:import-from :micros)
-  (:documentation "Lisp Interaction Servers Interface for Nyxt"))
-(in-package :nx-lis/lisi)
+  (:documentation "Lisp Interaction Servers Interface for Nyxt-4+"))
+(in-package :nxconfig/source/tcp-servers)
 
 
 (defvar *slynk-port* 4005
   "Default Slynk server port for Nyxt")
 
-(defvar *swank-port* 4005
+(defvar *swank-port* 4006
   "Default Swank server port for Nyxt")
 
-(defvar *micros-port* 4005
+(defvar *micros-port* 4007
   "Default Micros server port for Nyxt")
 
 

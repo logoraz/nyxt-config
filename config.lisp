@@ -1,10 +1,13 @@
-(defpackage :nyxt-config-init
+(defpackage :nxconfig-init
   (:use :cl :nyxt))
-(in-package :nyxt-config-init)
+(in-package :nxconfig-init)
 
 ;;Add nyxt-config to ASDF registery and load nyxt-config system
-(let ((asdf:*central-registry*
-        (append (list #P"~/.config/nyxt/"
-                      #P"~/.config/nyxt/extensions/")
-                asdf:*central-registry*)))
-  (asdf:load-system :nyxt-config))
+(progn
+  (asdf:initialize-source-registry
+   (list :source-registry
+         (list :tree (uiop:xdg-config-home "nyxt/"))
+         #+or
+         (list :tree (uiop:xdg-data-home "common-lisp/bin/nyxt/"))
+         :inherit-configuration))
+  (asdf:load-system :nxconfig))

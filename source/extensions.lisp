@@ -1,7 +1,9 @@
-(defpackage :nyxt-config/source/extensions
-  (:use :cl
-        :nyxt))
-(in-package :nyxt-config/source/extensions)
+(defpackage :nxconfig/source/extensions
+  (:use :cl :nyxt)
+  (:import-from :nfiles
+                #:resolve
+                #:data-file))
+(in-package :nxconfig/source/extensions)
 
 ;;; Nyxt Extensions
 ;; Loads extentions from #P"~/.local/share/nyxt/extensions/"
@@ -28,6 +30,15 @@ CONFIG, if true, provides only components to top-level user config.
 ;; Keep to illustrate example of proper Nyxt extension
 #+nil
 (defextsystem nx-nord-theme)
+
 #+nil
-(setf *extensions-directory* (make-instance 'extensions-directory
-                                            :base-path #P"~/.config/nyxt/extensions/"))
+(defmethod resolve ((profile nyxt:nyxt-profile)
+                    (file data-file))
+  "Re-route extensions directory to `.config/nyxt/extensions/' directory."
+  (uiop:xdg-config-home #P"nyxt/extensions/"))
+
+#+nil
+(setf *extensions-directory*
+      (make-instance 'extensions-directory
+                     :base-path (uiop:xdg-config-home #P"nyxt/extensions/")))
+

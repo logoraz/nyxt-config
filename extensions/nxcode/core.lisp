@@ -1,14 +1,13 @@
 ;; see nyxt/source/package.lisp (line 90)
-(defpackage :nx-code/core
+(defpackage :nxcode/core
   (:use :cl :nyxt)
   (:import-from :alexandria-2)
   (:import-from :local-time)
   (:import-from :cl-ppcre)
   (:export #:*locutus*
-           #:nx-code-first-contact)
+           #:nxcode-first-contact)
   (:documentation "Base package for nx-code"))
-
-(in-package :nx-code/core)
+(in-package :nxcode/core)
 
 (defvar *locutus* "nx-code"
   "First contact from nx-code")
