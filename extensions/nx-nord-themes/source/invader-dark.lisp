@@ -1,6 +1,7 @@
 (defpackage :nx-nord-themes/invader-dark
-    (:nicknames :invader-dark)
+    (:nicknames :nord-dark)
     (:use :cl :nyxt))
+
 (in-package :nx-nord-themes/invader-dark)
 
 ;;; Nord Color Palette

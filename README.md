@@ -2,7 +2,13 @@
 
 Personal configuration for the highly extensible Nyxt Browser with batteries
 included.  This configuration scaffold is set up as its own modern CL system
-(package-inferred-system) so as to keep things modular.
+so as to keep things modular.
+
+A cool feature is the system is loaded in such a way to fail *quietly* and
+and generate `*.log` files: `error.log` lists any issues encounted upon
+loading and `startup.log` lists successfull startup and details of startup 
+(WIP).
+
 
 PS: Only tested and used on Fedora 42 Workstation...
 

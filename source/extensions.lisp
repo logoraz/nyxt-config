@@ -1,9 +1,9 @@
-(defpackage :nxconfig/source/extensions
+(defpackage :nxconfig/extensions
   (:use :cl :nyxt)
   (:import-from :nfiles
                 #:resolve
                 #:data-file))
-(in-package :nxconfig/source/extensions)
+(in-package :nxconfig/extensions)
 
 ;;; Nyxt Extensions
 ;; Loads extentions from #P"~/.local/share/nyxt/extensions/"

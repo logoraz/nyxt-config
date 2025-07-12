@@ -1,6 +1,7 @@
-(defpackage :nxconfig/source/keepassxc-pwi
+(defpackage :nxconfig/keepassxc-pwi
   (:use :cl :nyxt))
-(in-package :nxconfig/source/keepassxc-pwi)
+(in-package :nxconfig/keepassxc-pwi)
+
 
 #+nil
 (defvar *keepassxc-exe* (concatenate 'string

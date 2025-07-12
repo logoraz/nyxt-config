@@ -1,11 +1,11 @@
-(defpackage :nxconfig/source/hacks
+(defpackage :nxconfig/hacks
   (:use :cl
         :nyxt)
   (:import-from :nfiles
                 #:resolve)
   (:import-from :nhooks
                 #:add-hook))
-(in-package :nxconfig/source/hacks)
+(in-package :nxconfig/hacks)
 
 ;; Borrowed from aartaka
 (defmethod resolve ((profile nyxt:nyxt-profile)

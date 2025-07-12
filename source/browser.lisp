@@ -1,9 +1,9 @@
-(defpackage :nxconfig/source/browser
+(defpackage :nxconfig/browser
   (:use :cl
         :nyxt)
   (:import-from :nkeymaps
                 #:define-keyscheme-map))
-(in-package :nxconfig/source/browser)
+(in-package :nxconfig/browser)
 
 (defvar *search-engines-list*
   '(("Google" "ggl" "https://www.google.com/?q=~A") ; I know - using the King of evils...

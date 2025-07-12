@@ -1,4 +1,6 @@
 # Main
+startup.log
+error.log
 /ocicl/*
 
 # Source Modules

@@ -1,10 +1,10 @@
-(defpackage :nxconfig/source/tcp-servers
+(defpackage :nxconfig/tcp-servers
   (:use :cl :nyxt)
   (:import-from :slynk)
   (:import-from :swank)
   (:import-from :micros)
   (:documentation "Lisp Interaction Servers Interface for Nyxt-4+"))
-(in-package :nxconfig/source/tcp-servers)
+(in-package :nxconfig/tcp-servers)
 
 
 (defvar *slynk-port* 4005

@@ -3,13 +3,12 @@
   :author "Erik P Almaraz"
   :license "MIT"
   :version (:read-file-form "version.sexp" :at (0 1))
-  :class :package-inferred-system
-  :depends-on ("nyxt"
-               "nxcode/core")
+  :depends-on ("nyxt")
+  :pathname "source"
+  :serial t
+  :components
+  ((:file "core"))
   :long-description "
-
-Long description here.
-
-")
+Long description here.")
 
 (register-system-packages "alexandria" '(:alexandria :alexandria-2))

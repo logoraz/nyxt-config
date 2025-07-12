@@ -7,6 +7,7 @@
   (:export #:*locutus*
            #:nxcode-first-contact)
   (:documentation "Base package for nx-code"))
+
 (in-package :nxcode/core)
 
 (defvar *locutus* "nx-code"
