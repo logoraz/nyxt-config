@@ -13,10 +13,11 @@
   :components
   ((:module "source"
      :serial t
-     :components ((:file "browser")
-                  (:file "keepass-pwi")
-                  (:file "tcp-servers")
-                  (:file "hacks"))))
+     :components
+     ((:file "browser")
+      (:file "keepassxc-pwi")
+      (:file "tcp-servers")
+      (:file "hacks"))))
   :long-description "Personal configuration for the highly extensible Nyxt Browser
 with batteries included. This configuration scaffold is set up as its own modern 
 Common Lisp system so as to keep things modular.")

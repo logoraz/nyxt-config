@@ -18,8 +18,8 @@
 
 (multiple-value-bind (result error-condition)
     (ignore-errors
-      (sb-ext:without-package-locks
-        (asdf:load-system :nxconfig)))
+     (sb-ext:without-package-locks
+       (asdf:load-system :nxconfig)))
   (if error-condition
       (save-log-file "nyxt/error.log" error-condition)
       (save-log-file "nyxt/startup.log" result)))
