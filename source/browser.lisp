@@ -1,6 +1,7 @@
 (defpackage :nxconfig/browser
   (:use :cl
-        :nyxt)
+        :nyxt
+        :ice-dark)
   (:import-from :nkeymaps
                 #:define-keyscheme-map))
 (in-package :nxconfig/browser)
@@ -74,6 +75,13 @@ and constructor function `make-search-engines'.")))
                                             :fill "Erik Almaraz")
           (nyxt/mode/autofill:make-autofill :name "Email"
                                             :fill "erikalmaraz@fastmail.com")))))
+;; Configure theme
+(define-configuration :browser
+  ((theme *ice-dark-theme*)))
+
+(define-configuration :status-buffer
+  ((style (str:concat %slot-value%
+                      (theme:themed-css (theme *browser*))))))
 
 
 #+ (or) ;; TODO - add blocked host list

@@ -1,16 +1,16 @@
-(defpackage :nx-nord-themes/invader-dark
-    (:nicknames :invader)
+(defpackage :nx-nord-themes/ice-dark
+    (:nicknames :ice-dark)
     (:use :cl :nyxt
           :color-palette)
-    (:export #:*invader-dark-theme*))
-(in-package :nx-nord-themes/invader-dark)
+    (:export #:*ice-dark-theme*))
+(in-package :nx-nord-themes/ice-dark)
 
 
 (defparameter *font-regular* "Iosevka Aile")
 (defparameter *font-monospace* "Fira Code")
 
 ;;; Nord Theme (Based off Invader-2 Theme)
-(defvar *invader-dark-theme*
+(defvar *ice-dark-theme*
   (make-instance 'theme:theme
                  :font-family           *font-regular*
                  :monospace-font-family *font-monospace*
@@ -30,14 +30,14 @@
                  :secondary-color+      *nord02=*
                  :on-secondary-color    *nord06+*   ;; White (Brighter)
 
-                 :action-color-         *nord14-*
-                 :action-color          *nord14-*   ;; Green (Pastel) darker
-                 :action-color+         *nord14-*
+                 :action-color-         *nord08=*
+                 :action-color          *nord08=*   ;; Metallic Blue lighter
+                 :action-color+         *nord08=*
                  :on-action-color       *nord00-*
 
-                 :success-color-        *nord14-*
-                 :success-color         *nord14-*   ;; Green (Pastel) darker
-                 :success-color+        *nord14-*
+                 :success-color-        *nord08=*
+                 :success-color         *nord08=*   ;; Metallic Blue lighter
+                 :success-color+        *nord08=*
                  :on-success-color      *nord00-*
 
                  :highlight-color-      *nord15-*
