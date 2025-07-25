@@ -17,7 +17,17 @@ the following:
                                         :depends-on ("nx-nord-themes"))
 ```
 
-TBD - create a way to implement each theme...
+To enable theme in your config, add the following code:
+
+```lisp
+;; Defined in proper order - theme has to first be loaded into browser, then status buffer is updated.
+(define-configuration :browser
+  ((theme *ice-dark-theme*)))
+
+(define-configuration :status-buffer
+  ((style (str:concat %slot-value%
+                      (theme:themed-css (theme *browser*))))))
+```
 
 ## Dependencies
 

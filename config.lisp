@@ -29,5 +29,5 @@
      (sb-ext:without-package-locks
        (asdf:load-system :nxconfig)))
   (if error-condition
-      (save-log-file "nyxt/error.log" error-condition)
-      (save-log-file "nyxt/startup.log" result)))
+      (save-log-file "nyxt/logs/config-error.log" error-condition)
+    (save-log-file "nyxt/logs/config-startup.log" result)))
