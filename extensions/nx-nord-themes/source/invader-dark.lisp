@@ -93,11 +93,3 @@
 (define-configuration :status-buffer
     ((style (str:concat %slot-value%
                         (theme:themed-css (theme *browser*))))))
-
-
-;;; Deprecated method slots
-;;:dark-p              t
-;; :codeblock-color-   "#3C5FAA"
-;; :codeblock-color    "#355496"
-;; :codeblock-color+   "#2D4880"
-;; :on-codeblock-color "#F7FBFC"

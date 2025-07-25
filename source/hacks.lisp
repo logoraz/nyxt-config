@@ -17,4 +17,24 @@
   ((window-make-hook
     (add-hook %slot-value%
               (lambda (_) (echo "")))
-    :dock "Hack to get rid of white echo-area (v4 pre-releases)")))
+    :doc "Hack to get rid of white echo-area (v4 pre-releases)")))
+
+
+;; (defmethod customize-instance ((document-buffer document-buffer) &key)
+;;            "Set Zoom Ratio to account for HiDPI on StumpWM. Need to adjust minibuffer"
+;;            (setf (slot-value document-buffer 'zoom-ratio-default) 1.7))
+
+;; (define-configuration :status-buffer
+;;   ((height 50)
+;;    (style (str:concat %slot-value%
+;;                       (theme:themed-css (theme *browser*)
+;;                         '(*
+;;                           :font-size "24px"
+;;                           :line-height "30px"))))))
+
+;; (define-configuration :prompt-buffer
+;;   ((style (str:concat %slot-value%
+;;                       (theme:themed-css (theme *browser*)
+;;                         '(*
+;;                           :font-size "24px"
+;;                           :line-height "34px"))))))

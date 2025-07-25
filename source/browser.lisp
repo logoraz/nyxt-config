@@ -5,6 +5,7 @@
                 #:define-keyscheme-map))
 (in-package :nxconfig/browser)
 
+
 (defvar *search-engines-list*
   '(("Google" "ggl" "https://www.google.com/?q=~A") ; I know - using the King of evils...
     ("GitHub" "ghb" "https://github.com/search?q=~A&type=repositories")
@@ -43,6 +44,7 @@ and constructor function `make-search-engines'.")))
                     nyxt/mode/force-https:force-https-mode
                     ,@%slot-value%)
      :doc "Enable base modes for web-buffer class.")))
+
 #+nil
 (define-configuration document-buffer
   ((keep-search-marks-p nil)))
@@ -72,6 +74,7 @@ and constructor function `make-search-engines'.")))
                                             :fill "Erik Almaraz")
           (nyxt/mode/autofill:make-autofill :name "Email"
                                             :fill "erikalmaraz@fastmail.com")))))
+
 
 #+ (or) ;; TODO - add blocked host list
 (progn

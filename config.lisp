@@ -1,5 +1,7 @@
 (defpackage :nxconfig-init
-  (:use :cl :nyxt))
+  (:use :cl :nyxt)
+  (:local-nicknames (:lt :local-time))
+  (:documentation "nxconfig System Initialization."))
 (in-package :nxconfig-init)
 
 
@@ -8,13 +10,19 @@
        (list :tree (uiop:xdg-config-home "nyxt/"))
        :inherit-configuration))
 
+(defun current-time ()
+  "Emits formated time using local-time"
+  (lt:format-timestring nil (lt:now)
+                        :format '(:year "-" :month "-" :day "-T"
+                                  :hour ":" :min ":" :sec)))
+
 (defun save-log-file (pathspec output)
   "Save log files for initializing nyxt-config"
   (with-open-file (strm (uiop:xdg-config-home pathspec)
                         :direction :output
                         :if-exists :append
                         :if-does-not-exist :create)
-    (format strm "Load nyxt-config output: ~A~%" output)))
+    (format strm "~A - Load nyxt-config output: ~A~%" (current-time) output)))
 
 (multiple-value-bind (result error-condition)
     (ignore-errors
