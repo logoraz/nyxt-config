@@ -1,0 +1,25 @@
+#+title: nxclide: Extensible/Modern Common Lisp IDE for Nyxt
+#+author: logoraz
+#+date: 2026-01-26
+#+options: toc:nil
+#+startup: overview
+#+startup: inlineimages
+:meta:
+:end:
+
+Goal is to create a modern minimal Editor/IDE that is optimized for Common Lisp
+that takes on a similar appearance to atom/vs code and is fundamentally like
+Emacs. While this is an extension to Nyxt, it itself will be extensible...
+
+# #+html: <p align="center"> <img src="assets/nyxt.svg" width="200"/> </p>
+
+** installation
+ - TBD
+
+
+** Dependencies
+ - TBD
+
+
+** References
+ - TBD

@@ -1,19 +1,23 @@
 ;; see nyxt/source/package.lisp (line 90)
-(defpackage :nxcode/core
-  (:use :cl :nyxt)
-  (:import-from :alexandria-2)
-  (:import-from :local-time)
-  (:import-from :cl-ppcre)
+(defpackage #:nxclide/core
+  (:use #:cl #:nyxt)
+  (:import-from #:alexandria-2)
+  (:import-from #:local-time)
+  (:import-from #:cl-ppcre)
   (:export #:*locutus*
-           #:nxcode-first-contact)
+           #:nxclide-first-contact)
   (:documentation "Base package for nx-code"))
 
-(in-package :nxcode/core)
+(in-package #:nxclide/core)
 
-(defvar *locutus* "nx-code"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Core
+
+(defvar *locutus* "nxclide"
   "First contact from nx-code")
 
-(define-command-global nx-code-first-contact (&optional (locutus *locutus*))
+(define-command-global nxclide-first-contact (&optional (locutus *locutus*))
   "First Contact Command."
   (let* ((current-time (local-time:now))
          (current-day-as-string 

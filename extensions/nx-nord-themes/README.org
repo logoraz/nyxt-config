@@ -1,0 +1,49 @@
+#+title: nx-nord-themes: A suite of Nord Themes for Nyxt
+#+author: logoraz
+#+date: 2026-01-26
+#+options: toc:nil
+#+startup: overview
+#+startup: inlineimages
+:meta:
+:end:
+
+
+Currently only have a contrast dark theme implemented for Nyxt, invader-dark.
+
+** Installation
+
+Copy https://github.com/logoraz/nxconfig/extensions/nx-nord-themes by your method
+of choice to `~/.local/share/nyxt/extensions`
+
+After you've added `nx-nord-themes` to a place that Nyxt can find it, it is
+necessary to load it in your init file. To do this, it suffices to add
+the following:
+
+#+begin_src lisp
+
+  (nyxt:define-nyxt-user-system-and-load "nyxt-user/nx-lis-proxy"
+                                         :depends-on ("nx-nord-themes"))
+
+#+end_src
+
+To enable theme in your config, add the following code:
+
+#+begin_src lisp
+
+  ;; Defined in proper order - theme has to first be loaded into browser, then status buffer is updated.
+  (define-configuration :browser
+    ((theme *ice-dark-theme*)))
+
+  (define-configuration :status-buffer
+    ((style (str:concat %slot-value%
+                        (theme:themed-css (theme *browser*))))))
+
+#+end_src
+
+
+** Dependencies
+
+ - TBD
+
+
+** References

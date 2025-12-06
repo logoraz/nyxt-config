@@ -1,6 +1,6 @@
-(defpackage :nx-nord-themes/color-palette
-  (:nicknames :color-palette)
-  (:use :cl :nyxt)
+(defpackage #:nx-nord-themes/color-palette
+  (:nicknames #:color-palette)
+  (:use #:cl #:nyxt)
   (:export #:*nord00-*
            #:*nord00=*
            #:*nord01=*
@@ -34,9 +34,11 @@
            #:*nord15-*
            #:*nord15=*
            #:*nord15+*))
-(in-package :nx-nord-themes/color-palette)
 
+(in-package #:nx-nord-themes/color-palette)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;; Nord Color Palette
 ;; Tool used to add colors variation https://mdigi.tools/color-shades/#44475a
 
