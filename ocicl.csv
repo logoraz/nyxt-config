@@ -1,3 +1,0 @@
-micros, ghcr.io/ocicl/micros@sha256:49c9ce91eccad456c06dfc9e7022439d7a5ee058f3f1bc13b87931a378ef932a, micros-20250205-7dc9b46/micros.asd
-slynk, ghcr.io/ocicl/slynk@sha256:8c35d6670ad09411ae9bd37b015137c75a8e8c83bf9f2e1f20a5ad257bdca077, sly-20250523-63131ef9/slynk/slynk.asd
-swank, ghcr.io/ocicl/swank@sha256:1768fad21c1870916727a672174634fc0ba40a187f835015ad8677151d43216a, slime-2.31/swank.asd

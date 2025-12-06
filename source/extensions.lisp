@@ -1,16 +1,27 @@
-(defpackage :nxconfig/extensions
-  (:use :cl :nyxt)
-  (:import-from :nfiles
+(defpackage #:nxconfig/extensions
+  (:use #:cl #:nyxt)
+  (:import-from #:nfiles
                 #:resolve
-                #:data-file))
-(in-package :nxconfig/extensions)
+                #:data-file)
+  (:export #:defextsystem)
+  (:documentation "Load Nyxt Extensions"))
 
-;;; Nyxt Extensions
-;; Loads extentions from #P"~/.local/share/nyxt/extensions/"
-;; TODO 1: Change extensions path to #P"$XDG_CONFIG_HOME/nyxt/extensions" 
-;; |--> (default to #P"$XDG_DATA_HOME/nyxt/extensions").
-;; |--> nyxt:describe-variable?variable=%1B%2Aextensions-directory%2A
-;; |--> nyxt:*extensions-directory*
+(in-package #:nxconfig/extensions)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Nyxt Extensions Macro
+;;;
+;;; Loads extentions from #P"~/.local/share/nyxt/extensions/"
+;;; TODO 1: Change extensions path to #P"$XDG_CONFIG_HOME/nyxt/extensions" 
+;;; |--> (default to #P"$XDG_DATA_HOME/nyxt/extensions").
+;;; |--> nyxt:describe-variable?variable=%1B%2Aextensions-directory%2A
+;;; |--> nyxt:*extensions-directory*
+;;;
+;;; This Macro is not needed or used since my config is configured as its
+;;; own system and extensions may be just added as external systems.
+;;;
+
 (defmacro defextsystem (system &key files config &allow-other-keys)
   "Helper macro to load configuration for extensions & user config files.
 Loads a newly-generated ASDF system depending on SYSTEM.
@@ -27,7 +38,10 @@ CONFIG, if true, provides only components to top-level user config.
              (t
               `(:depends-on (,system))))))
 
-;; Keep to illustrate example of proper Nyxt extension
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Example Usage
+
 #+nil
 (defextsystem nx-nord-theme)
 
