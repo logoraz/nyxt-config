@@ -3,8 +3,12 @@
     (:use :cl :nyxt
           :color-palette)
     (:export #:*ice-dark-theme*))
-(in-package :nx-nord-themes/ice-dark)
 
+(in-package #:nx-nord-themes/ice-dark)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Ice Dark Theme
 
 (defparameter *font-regular* "Iosevka Aile")
 (defparameter *font-monospace* "Fira Code")

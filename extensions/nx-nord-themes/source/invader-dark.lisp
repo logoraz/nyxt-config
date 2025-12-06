@@ -1,10 +1,14 @@
-(defpackage :nx-nord-themes/invader-dark
-    (:nicknames :invader)
-    (:use :cl :nyxt
-          :color-palette)
+(defpackage #:nx-nord-themes/invader-dark
+    (:nicknames #:invader)
+    (:use #:cl #:nyxt
+          #:color-palette)
     (:export #:*invader-dark-theme*))
-(in-package :nx-nord-themes/invader-dark)
 
+(in-package #:nx-nord-themes/invader-dark)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Invader Dark Theme
 
 (defparameter *font-regular* "Iosevka Aile")
 (defparameter *font-monospace* "Fira Code")

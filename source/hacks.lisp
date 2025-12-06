@@ -1,17 +1,23 @@
-(defpackage :nxconfig/hacks
-  (:use :cl
-        :nyxt)
-  (:import-from :nfiles
+(defpackage #:nxconfig/hacks
+  (:use #:cl #:nyxt)
+  (:import-from #:nfiles
                 #:resolve)
-  (:import-from :nhooks
-                #:add-hook))
-(in-package :nxconfig/hacks)
+  (:import-from #:nhooks
+                #:add-hook)
+  (:documentation "Nyxt Configuration Hacks."))
 
-;; Borrowed from aartaka
+(in-package #:nxconfig/hacks)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Hacks
+;;;
+;;; Borrowed from aartaka
+
 (defmethod resolve ((profile nyxt:nyxt-profile)
                     (file nyxt/mode/bookmark:bookmarks-file))
   "Re-route bookmarks to the `.config/nyxt/' directory."
-  (uiop:xdg-config-home #P"nyxt/assets/bookmarks.lisp"))
+  (uiop:xdg-config-home #P"nyxt/bookmarks.lisp"))
 
 (define-configuration browser
   ((window-make-hook
@@ -19,6 +25,9 @@
               (lambda (_) (echo "")))
     :doc "Hack to get rid of white echo-area (v4 pre-releases)")))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Notes for reference
 
 ;; (defmethod customize-instance ((document-buffer document-buffer) &key)
 ;;            "Set Zoom Ratio to account for HiDPI on StumpWM. Need to adjust minibuffer"

@@ -1,11 +1,14 @@
-(defpackage :nxconfig/browser
-  (:use :cl
-        :nyxt
-        :ice-dark)
-  (:import-from :nkeymaps
-                #:define-keyscheme-map))
-(in-package :nxconfig/browser)
+(defpackage #:nxconfig/browser
+  (:use #:cl #:nyxt)
+  (:import-from #:ice-dark
+                #:*ice-dark-theme*)
+  (:documentation "Configure base browser features for Nyxt."))
 
+(in-package #:nxconfig/browser)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Browser Configuration
 
 (defvar *search-engines-list*
   '(("Google" "ggl" "https://www.google.com/?q=~A") ; I know - using the King of evils...
@@ -39,43 +42,13 @@ and constructor function `make-search-engines'.")))
   ((default-modes `(nyxt/mode/emacs:emacs-mode ,@%slot-value%))
    (conservative-word-move t)))
 
-(define-configuration web-buffer
-  ((default-modes `(nyxt/mode/reduce-tracking:reduce-tracking-mode
-                    nyxt/mode/blocker:blocker-mode
-                    nyxt/mode/force-https:force-https-mode
-                    ,@%slot-value%)
-     :doc "Enable base modes for web-buffer class.")))
-
-#+nil
 (define-configuration document-buffer
   ((keep-search-marks-p nil)))
 
-(define-configuration status-buffer 
-  ((glyph-mode-presentation-p t)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Theme Configuration
 
-(define-configuration nyxt/mode/force-https:force-https-mode
-  ((glyph "HTTPS")))
-
-(define-configuration nyxt/mode/blocker:blocker-mode 
-  ((glyph "block")))
-
-(define-configuration nyxt/mode/reduce-tracking:reduce-tracking-mode 
-  ((glyph "no-track")))
-
-(define-configuration nyxt/mode/hint:hint-mode
-  ((nyxt/mode/hint:show-hint-scope-p nil)
-   (nyxt/mode/keyscheme::keyscheme-map
-    (define-keyscheme-map "custom" (list :import %slot-value%)
-      nyxt/keyscheme:emacs
-      (list "M-f" 'nyxt/mode/hint:follow-hint)))))
-
-(define-configuration nyxt/mode/autofill:autofill-mode
-  ((nyxt/mode/autofill:autofills
-    (list (nyxt/mode/autofill:make-autofill :name "Name"
-                                            :fill "Erik Almaraz")
-          (nyxt/mode/autofill:make-autofill :name "Email"
-                                            :fill "erikalmaraz@fastmail.com")))))
-;; Configure theme
 (define-configuration :browser
   ((theme *ice-dark-theme*)))
 
@@ -83,20 +56,3 @@ and constructor function `make-search-engines'.")))
   ((style (str:concat %slot-value%
                       (theme:themed-css (theme *browser*))))))
 
-
-#+ (or) ;; TODO - add blocked host list
-(progn
-  (defvar *blocked-hosts-list* "tbd")
-
-  (define-configuration nyxt/mode/blocker:blocker-mode
-    ((nyxt/mode/blocker:hostlists
-      (append (list *my-blocked-hosts*) %slot-default%)
-      :doc \"You have to define *my-blocked-hosts* first.\")))
-  )
-
-#+(or) ;; Keep for reference
-(define-configuration search-buffer-mode
-  ((keyscheme-map
-    (keymaps:define-keyscheme-map "custom" (list :import %slot-value%)
-      nyxt/keyscheme:emacs
-      (list "C-f" 'nyxt/mode/search-buffer:search-buffer)))))

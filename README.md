@@ -24,110 +24,86 @@ PS: Only tested and used on Fedora 42 Workstation...
   - `nxcode` (Included - *WIP* A Editor/IDE extension for Nyxt)
      - tbd
   - TCP Servers configuration
-  - slynk
-  - swank
-  - micros     
+    - slynk
+    - swank
+    - micros     
 
-## Project Scaffold
-```lisp
-  ~/.config/nyxt/
-    config.lisp
-    nyxt-config.asd
-    setup.lisp
-    |- assets/
-    |- extensions/
-       |- nx-nord-themes/
-       |- nxcode/
-    |- source/
-       |- all.lisp
-       |- browser.lisp
-       |- keepassxc-pwi.lisp
-       |- tcp-servers.lisp
-       |- extensions.lisp
-       |- hacks.lisp
-```
 
 ## Installation/Setup
 Download this repo from `https://github.com/logoraz/nyxt-config`:
 
 ```bash
-   $ cd ~/.config
-   $ git clone https://github.com/logoraz/nyxt-config.git nyxt
+   $ mkdir -p ~/Work/
+   $ cd ~/Work/
+   $ git clone https://github.com/logoraz/nyxt-config.git
 ```
 
-Next, setup extensions directory to utilize the "batteries" included with this
-configuration:
+Deploy this config to `~/.config/nyxt/`, note that `setup.lisp` assumes you
+have built Nyxt from source (in `~/Work/builds/nyxt`):
 
 ```bash
-   $ cd nyxt
+   $ cd ~/Work/nyxt-config/
    $ sbcl --load setup.lisp
 ```
 
-This script ensures `~/.local/share/nyxt/` directory exists, then creates a
-symlink from `~/.config/nyxt/extensions` to `~/.local/share/nyxt/extensions/`
+`setup.lisp` ensures the following config framework is mapped to `~/.config/nyxt`
+and ensures your Nyxt build is "installed" locally:
 
-
-### Loading Common Lisp dependencies required for extensions
-I use [ocicl](https://github.com/ocicl/ocicl) for my external Common Lisp systems
-management because it provides a lot of conveniency and is far more superior and 
-more secure than the other distribution tools out there that depend on quicklisp 
-(namely qlot, roswell, ultralisp, etc.). It's time to move away from quicklisp
-folks!
-
-First, install `ocicl` following the install instructions on their readme.
-
-Next, let's install the external dependencies for the TCP servers configuration
-
-```bash
-   $ cd ~/.config/nyxt/source/
-   # Dependencies are specified in 'ocicl.csv'
-   $ ocicl install
+**config scaffold** deployed
+```lisp
+  ~/.config/nyxt
+   |s-> config.lisp  ; symlink
+   |s-> nxconfig.asd ; symlink
+   |s-> version.sexp ; symlink
+   |s-> source/      ; symlink
+   |s-> extensions/  ; symlink
+   |+-> logs/        ; creates
+   |+-> ocicl/       ; creates
 ```
 
-A neat feature of the `ocicl` command line tool that I suggested (see 
-[Issue 122](https://github.com/ocicl/ocicl/issues/122)) and the folks at `ocicl`
-quickly implemented in part - is `tree`, which lists out installed dependencies, 
-you can trial it out as follows to see what dependencies were installed above:
-
-```bash
-   $ ocicl tree --depth=4
-   #/home/<username>/.config/nyxt/source/ocicl.csv
-   #├─ micros
-   #├─ slynk
-   #└─ swank
+**build scaffold** deployed
+```lisp
+  ~/Work/builds/nyxt/nyxt --> ~/.local/bin/nyxt
+  ~/Work/nyxt-config/assets/nyxt.desktop --> ~/.local/share/applications/nyxt.desktop
+  ~/.config/nyxt/ocicl
+   |--> slynk  ; installs via ocicl
+   |--> swank  ; installs via ocicl
+   |--> micros ; installs via ocicl
 ```
 
-If you are feeling daring, you can hack my current experimental extension
-`nxcode`, a modern emacs-like Editor/IDE I am developing for nyxt. 
 
-Considering of incorporating `cl-treesitter`, below is the build recipe for
-doing so...Currently not needed as a dependency as there is only treesitter
-bindings available for java in Fedora...
+## Build Nyxt 4 (Fedora)
+Install system dependencies & build Nyxt from source:
 
-Fedora dependencies:
 ```bash
-   $ sudo dnf install make gcc libtree-sitter-devel
+  $ sudo dnf install nodejs enchant2-devel libfixposix-devel
+  $ cd ~/Work/builds/
+  $ git clone --recurse-submodules https://github.com/atlas-engineer/nyxt.git
+  $ cd nyxt && make all
 ```
 
-Now lets get the `cl-treesitter` source and compile:
-```bash
-   # First retrieve the source of `cl-treesitter'
-   $ cd ~/.config/nyxt/extensions/nx-code/
-   $ mkdir ocicl && cd ocicl
-   $ git clone https://github.com/garlic0x1/cl-treesitter.git
-   $ cd cl-treesitter
-   # Installs/Compiles shim.c required for cl-treesitter
-   # ocicl will handle any of the external dependencies required therein...
-   $ sbcl --eval "(asdf:load-system 'cl-treesitter) (sb-ext:quit)"
-``
+To get Nyxt build running, `_build/cl-electron/package.json` needs to be 
+ammended as follows:
+
+```json
+ ...
+ "scripts": {
+   ...
+   "start": "electron --gtk-version=3",
+   ...
+   },
+ ...
+```
+
 
 ## TODOs (Wish List)
   - Establish custom keybindings...
-  - Continue efforts on developing `nxcode` Editor/IDE for Nyxt.
-  - tbd
+  - Continue efforts to update Nyxts build using `ocicl`
+  - Start developing `nxcode` Editor/IDE for Nyxt.
 
 
 ## References:
   - https://github.com/atlas-engineer/nyxt
+  - https://github.com/ocicl/ocicl
   - https://github.com/aartaka/nyxt-config
-  - tbd
+  

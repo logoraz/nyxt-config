@@ -1,7 +1,21 @@
-(defpackage :nxconfig/keepassxc-pwi
-  (:use :cl :nyxt))
-(in-package :nxconfig/keepassxc-pwi)
+(defpackage #:nxconfig/keepassxc-pwi
+  (:use #:cl #:nyxt)
+  (:import-from #:nyxt/mode/password
+                #:keepassxc-interface
+                #:password-mode)
+  (:import-from #:password
+                #:password-file
+                #:key-file
+                #:yubikey-slot)
+  (:documentation "Nyxt Password Interface Configuration for KeepassXC"))
 
+(in-package #:nxconfig/keepassxc-pwi)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Configure KeepassXC
+
+;;; Note: KeepassXC integration not working with Nyxt 4
 
 #+nil
 (defvar *keepassxc-exe* (concatenate 'string
@@ -17,20 +31,20 @@
 ;;       |--> submit PR when resolved...
 (defvar *yubikey-slot* "") ; set as `empty string' to avoid propmt
 
-
-(defmethod initialize-instance :after ((interface password:keepassxc-interface)
+(defmethod initialize-instance :after ((interface keepassxc-interface)
                                        &key &allow-other-keys)
-  (setf (password:password-file interface) *keepassxc-db*
-        (password:key-file interface) *keepassxc-kf*
-        (password:yubikey-slot interface) *yubikey-slot*))
+  (setf (password-file interface) *keepassxc-db*
+        (key-file interface) *keepassxc-kf*
+        (yubikey-slot interface) *yubikey-slot*))
 
-(define-configuration nyxt/mode/password:password-mode
-  ((password-interface (make-instance 'password:keepassxc-interface))))
-
+(define-configuration password-mode
+  ((password-interface (make-instance 'keepassxc-interface))))
 
 (define-configuration buffer
-  ((default-modes `(nyxt/mode/password:password-mode ,@%slot-value%))))
+  ((default-modes `(password-mode ,@%slot-value%))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;; References
 ;;; 1. https://nyxt.atlas.engineer/documentation#keepassxc-support
 ;;; 2. https://github.com/aartaka/nyxt-config/tree/master
